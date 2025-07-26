@@ -4,6 +4,7 @@ import Layout from "../component/Layout";
 import { Link, useNavigate } from "react-router-dom";
 import { Trash2 } from "lucide-react";
 import axios from "../api/axios";
+import { toast } from "react-toastify";
 
 export default function List() {
   const [users, setUsers] = useState([]);
@@ -48,27 +49,29 @@ export default function List() {
         localStorage.removeItem("role");
         navigate("/");
       }
+      alert(error.message);
+
     } finally {
       setLoading(false);
     }
   };
 
   const handleDelete = async (id) => {
-    if (!window.confirm("Are you sure you want to delete this user?")) return;
-
+    if (!window.confirm("Are you sure you want to delete this user?")) {
+      return;
+    }
     try {
-      await axios.post(
+    const reponse = await axios.post(
         `/user-delete/${id}`,
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        {}
       );
+
+      toast.success(reponse.data.message);
+
       fetchUsers();
     } catch (error) {
       console.error("Error deleting user:", error);
+      alert(error.reponse.data.message);
       if (error?.response?.status === 401) {
         localStorage.removeItem("token");
         navigate("/");

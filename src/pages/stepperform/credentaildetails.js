@@ -6,14 +6,34 @@ export default function Credentaildetails({ formData, handleChange }) {
 
     const validate = () => {
         const errs = {};
-        if (!formData.email) errs.email = "Email is required";
-        if (!formData.password) errs.password = "Password is required";
-        if (!formData.password_confirmation) errs.password_confirmation = "Confirm password is required";
-        if (formData.password !== formData.password_confirmation) {
+
+        // Email validation
+        if (!formData.email) {
+            errs.email = "Email is required";
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+            errs.email = "Invalid email format";
+        }
+
+        // Password validation
+        if (!formData.password) {
+            errs.password = "Password is required";
+        } else if (formData.password.length < 6) {
+            errs.password = "Password must be at least 6 characters";
+        } else if (!/[A-Za-z]/.test(formData.password) || !/\d/.test(formData.password)) {
+            errs.password = "Password must contain both letters and numbers";
+        }
+
+        // Confirm password validation
+        if (!formData.password_confirmation) {
+            errs.password_confirmation = "Confirm password is required";
+        } else if (formData.password !== formData.password_confirmation) {
             errs.password_confirmation = "Passwords do not match";
         }
+
         setErrors(errs);
+        return Object.keys(errs).length === 0;
     };
+
 
     useEffect(() => {
         validate();

@@ -29,7 +29,7 @@ export default function Login() {
                     navigate("/Product");
                 }
             } else {
-                toast.error(response.data.message || "Login failed. Please try again.");
+                alert(response.data.message || "Login failed. Please try again.");
             }
         } catch (error) {
             console.error("Login error:", error);

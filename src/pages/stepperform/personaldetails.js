@@ -49,6 +49,7 @@ export default function Personaldetails({ formData, handleChange, handleFileChan
                                     alt="profilepic"
                                     className="object-cover w-full h-full"
                                 />
+                                {errors.name && <p className="text-red-500 text-xs text-left mt-1">{errors.name}</p>}
                             </span>
                             <div className="flex items-center justify-center text-white">
                                 <label className="w-50 flex flex-col items-center px-4 py-2 mt-5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 rounded-lg shadow-lg tracking-wide border border-blue cursor-pointer">
@@ -112,6 +113,7 @@ export default function Personaldetails({ formData, handleChange, handleFileChan
                                 value={formData.phoneNumber}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
+                                maxLength={12}
                             />
                             {errors.phoneNumber && <p className="text-red-500 text-xs text-left mt-1">{errors.phoneNumber}</p>}
                         </div>

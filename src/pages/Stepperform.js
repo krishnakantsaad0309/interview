@@ -104,7 +104,7 @@ export default function Stepperform() {
                 setActiveStep(activeStep + 1);
             } catch (error) {
                 console.error("Registration error:", error);
-                toast.error(error.response?.data?.message || "Something went wrong. Please try again.");
+                alert(error.response?.data?.message || "Something went wrong. Please try again.");
             }
         } else {
             setActiveStep((prev) => prev + 1);
@@ -163,6 +163,10 @@ export default function Stepperform() {
                             <div className='flex justify-center'>
                                 <div className='flex justify-between w-full mt-4'>
                                     <Button disabled={activeStep === 0} onClick={handleBack}>Back</Button>
+                                    <div className='flex gap-2 justify-center'>
+                                        <span className='text-sm font-bold'>Note:</span>
+                                        <p className='text-sm' > All fields are required.</p>
+                                    </div>
                                     <Button variant="contained" color="primary" onClick={handleNext} disabled={!validateStep()} >
                                         {activeStep === steps.length - 1 ? 'Submit' : 'Next'}
                                     </Button>
