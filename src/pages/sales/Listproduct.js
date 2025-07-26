@@ -39,6 +39,7 @@ export default function Product() {
             setTotalPages(lastPage);
         } catch (error) {
             console.error("Error fetching products:", error);
+            alert(error.response?.data?.message)
             if (error?.response?.status === 401) {
                 localStorage.removeItem("token");
                 navigate("/");

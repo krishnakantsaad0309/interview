@@ -61,7 +61,7 @@ export default function Addproduct() {
                 alert("Session expired. Redirecting to login...");
                 navigate("/login");
             } else {
-                toast.error(error.response?.data?.message || "Something went wrong. Please try again.");
+                alert(error.response?.data?.message || "Something went wrong. Please try again.");
             }
         }
     };
