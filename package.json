@@ -33,6 +33,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
+  "homepage": "https://krishnakantsaad0309.github.io/interview",
   "eslintConfig": {
     "extends": [
       "react-app",
